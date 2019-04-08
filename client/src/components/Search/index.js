@@ -10,7 +10,7 @@ function Search(){
                 <label for="bookSearch">Search</label>
                 <input type="text" className="form-control" id="bookSearch"/>
             </div>
-            <button type="button" class="btn btn-primary">Search</button>
+            <button type="button" class="btn btn-primary btn-search">Search</button>
         </form>
         </div>
     )
