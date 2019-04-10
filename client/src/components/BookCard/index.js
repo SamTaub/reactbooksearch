@@ -14,9 +14,6 @@ function BookCard(props) {
                 <div className="row mb-3">
                     <a href={props.link}>More info</a>
                 </div>
-                <div className="row mb-5">
-                    <button type="button" className="btn btn-success" onClick={props.onClick} id={props.id}>Save</button>
-                </div>
                 <div className="row mb-1">
                     <div className="col-lg-2">
                         <img src={props.image} alt={props.title} />

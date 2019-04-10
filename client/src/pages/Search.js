@@ -2,12 +2,19 @@ import React from 'react';
 import SearchForm from '../components/SearchForm';
 import API from '../utils/API';
 import BookCard from '../components/BookCard';
+import SaveBtn from '../components/SaveBtn';
+import Wrapper from '../components/Wrapper';
 
 class Search extends React.Component {
 
     state = {
         search: "",
-        results: []
+        results: [],
+        title: "",
+        authors: [],
+        description: "",
+        image: "",
+        link: ""
     };
 
     handleInputChange = event => {
@@ -27,33 +34,51 @@ class Search extends React.Component {
             .catch(err => console.log(err));
     };
 
+    handleSave = event => {
+        event.preventDefault()
+        console.log(this.props)
+    }
+
     render() {
         return (
             <div>
-            <SearchForm
-                search={this.state.search}
-                handleFormSubmit={this.handleFormSubmit}
-                handleInputChange={this.handleInputChange}
-            />
-            {!this.state.results.length ? (
-                <h1 className="text-center">No results to display</h1>
-            ) : (
-                <div>
-                {this.state.results.map(book => (
-                    <BookCard 
-                    id={book.id}
-                    key={book.id}
-                    title={book.volumeInfo.title}
-                    authors={book.volumeInfo.authors.join(', ')}
-                    description={book.volumeInfo.description}
-                    link={book.volumeInfo.infoLink}
-                    image={book.volumeInfo.imageLinks.smallThumbnail}
-                    />
-                ))}
-                </div>
-            )}
+                <SearchForm
+                    search={this.state.search}
+                    handleFormSubmit={this.handleFormSubmit}
+                    handleInputChange={this.handleInputChange}
+                />
+                {!this.state.results.length ? (
+                    <h1 className="text-center">No results to display</h1>
+                ) : (
+                        <div>
+                            <Wrapper>
+                                {this.state.results.map(book => (
+                                    <div>
+                                        <BookCard
+                                            id={book.id}
+                                            key={book.id}
+                                            title={book.volumeInfo.title}
+                                            authors={book.volumeInfo.authors.join(', ')}
+                                            description={book.volumeInfo.description}
+                                            link={book.volumeInfo.infoLink}
+                                            image={book.volumeInfo.imageLinks.smallThumbnail}
+                                        />
+                                        <SaveBtn
+                                            id={book.id}
+                                            title={book.volumeInfo.title}
+                                            authors={book.volumeInfo.authors.join(', ')}
+                                            description={book.volumeInfo.description}
+                                            link={book.volumeInfo.infoLink}
+                                            image={book.volumeInfo.imageLinks.smallThumbnail}
+
+                                            onClick={this.handleSave} />
+                                    </div>
+                                ))}
+                            </Wrapper>
+                        </div>
+                    )}
             </div>
-            
+
         )
     }
 }

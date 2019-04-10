@@ -2,7 +2,7 @@ import React from 'react';
 
 function SearchForm(props) {
     return (
-        <div class="container bg-dark p-3 text-white mb-3">
+        <div className="container bg-dark p-3 text-white mb-3">
             <form>
                 <div className="form-group">
                     <label htmlFor="search">Search:</label>
